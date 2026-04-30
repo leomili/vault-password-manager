@@ -1,0 +1,24 @@
+{% extends "base.html" %} {% block content %}
+
+<h2>Your Vault</h2>
+
+<a href="{% url 'add' %}">Add new password</a> |
+<a href="{% url 'lock' %}">Lock Vault</a> |
+<a href="{% url 'logout' %}">Logout</a>
+
+<br /><br />
+
+{% if error %}
+<p>{{ error }}</p>
+{% endif %} {% if entries %}
+<ul>
+  {% for entry in entries %}
+  <li>
+    <a href="{% url 'view' entry.id %}">{{ entry.website }}</a>
+    — {{ entry.username }}
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>No passwords saved yet. <a href="{% url 'add' %}">Add one now</a></p>
+{% endif %} {% endblock %}
