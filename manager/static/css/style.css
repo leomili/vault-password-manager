@@ -1,0 +1,269 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap');
+
+/* ── Variables ── */
+:root {
+    --bg-outer: #1a1a1a;
+    --bg-page: #0d0d0d;
+    --red: #f03030;
+    --red-hover: #ff4444;
+    --red-dark: #c01818;
+    --input-bg: #2a2a2a;
+    --input-border: #3a3a3a;
+    --input-black: #111111;
+    --text-white: #ffffff;
+    --text-muted: #888888;
+    --text-label: #cccccc;
+    --card-bg: #181818;
+    --card-hover: #202020;
+    --error: #ff6b6b;
+}
+
+/* ── Reset ── */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background: var(--bg-outer);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+/* ── Page container ── */
+.page {
+    background: var(--bg-page);
+    width: 100%;
+    max-width: 600px;
+    min-height: 500px;
+    border-radius: 6px;
+    padding: 50px 60px 60px;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Title ── */
+.page-title {
+    font-family: 'Baloo Thambi 2','Cinzel', serif;
+    font-size: 2.8rem;
+    font-weight: 400;
+    color: var(--red);
+    text-align: center;
+    margin-bottom: 44px;
+    letter-spacing: 0.02em;
+}
+
+.page-title.left {
+    text-align: left;
+    font-size: 2.4rem;
+    margin-bottom: 32px;
+}
+
+/* ── Form groups ── */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-label);
+    margin-bottom: 6px;
+    font-weight: 400;
+}
+
+/* Gray input (login/register/add/locked) */
+.input-gray {
+    width: 100%;
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-radius: 4px;
+    padding: 9px 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    color: var(--text-white);
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.input-gray:focus {
+    border-color: var(--red);
+}
+
+.input-gray::placeholder {
+    color: #555;
+}
+
+/* Black pill input (view page) */
+.input-black {
+    width: 100%;
+    background: var(--input-black);
+    border: none;
+    border-radius: 30px;
+    padding: 11px 18px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    color: var(--text-white);
+    outline: none;
+}
+
+/* Password reveal wrapper */
+.password-wrapper {
+    position: relative;
+}
+
+.password-wrapper .input-black {
+    padding-right: 48px;
+}
+
+.reveal-btn {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #777;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    transition: color 0.2s;
+}
+
+.reveal-btn:hover { color: #fff; }
+
+/* ── Buttons ── */
+.btn {
+    display: inline-block;
+    padding: 13px 0;
+    width: 200px;
+    border: none;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.1s;
+    color: var(--text-white);
+}
+
+.btn:active { transform: scale(0.97); }
+
+.btn-red {
+    background: var(--red);
+}
+
+.btn-red:hover {
+    background: var(--red-hover);
+}
+
+/* ── Error ── */
+.error-msg {
+    color: var(--error);
+    font-size: 0.82rem;
+    margin-top: 10px;
+}
+
+/* ── Auth link ── */
+.auth-link {
+    display: block;
+    margin-top: 14px;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    text-decoration: none;
+}
+
+.auth-link:hover { color: var(--text-label); }
+
+/* ── Dashboard ── */
+.dashboard-actions {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 36px;
+    flex-wrap: wrap;
+}
+
+.dashboard-actions .btn {
+    width: 160px;
+    padding: 13px 0;
+}
+
+.entries-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.entry-card {
+    background: var(--card-bg);
+    border-radius: 10px;
+    padding: 14px 18px;
+    text-decoration: none;
+    display: block;
+    transition: background 0.2s, transform 0.15s;
+}
+
+.entry-card:hover {
+    background: var(--card-hover);
+    transform: translateY(-1px);
+}
+
+.entry-website {
+    display: block;
+    color: var(--text-white);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.entry-username {
+    display: block;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    margin-top: 2px;
+}
+
+.empty-state {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.empty-state a {
+    color: var(--red);
+    text-decoration: none;
+}
+
+/* ── View page fields ── */
+.view-field {
+    margin-bottom: 24px;
+}
+
+.view-field label {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-label);
+    margin-bottom: 8px;
+}
+
+/* ── Button stack ── */
+.btn-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 28px;
+}
+
+/* ── Locked subtitle ── */
+.locked-subtitle {
+    font-size: 0.95rem;
+    color: var(--text-label);
+    margin-bottom: 30px;
+    font-weight: 300;
+}

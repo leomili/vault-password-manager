@@ -120,6 +120,9 @@ def add_password(request):
             username = request.POST.get("username")
             password = request.POST.get("password")
 
+            if not website or not username or not password:
+                return render(request, "add.html", {"error": "All fields are required"})
+
             PasswordEntry.objects.create(
                 user=request.user,
                 website=website,
@@ -157,6 +160,21 @@ def view_password(request, entry_id):
     except Exception as e:
         print(e)
         return render(request, "view.html", {"error": "Could not decrypt this password, please try again"})
+
+
+@login_required
+def delete_password(request, entry_id):
+    entry = get_object_or_404(PasswordEntry, id=entry_id, user=request.user)
+    
+    if request.method == "POST":
+        try:
+            entry.delete()
+            return redirect("dashboard")
+        except Exception as e:
+            print(e)
+            return redirect("dashboard")
+    
+    return redirect("dashboard")
 
 
 # Wipes the session entirely and logs the user out

@@ -1,27 +1,33 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %}
+{% block title %}Register{% endblock %}
+{% block content %}
 
-<h2>Register</h2>
+<div class="page">
 
-<form method="POST">
-  {% csrf_token %}
-  <label>Username</label><br />
-  <input type="text" name="username" /><br /><br />
+    <h1 class="page-title">Register</h1>
 
-  <label>Master Password</label><br />
-  <input
-    type="password"
-    name="master_password"
-    autocomplete="off"
-  /><br /><br />
+    <form method="POST">
+        {% csrf_token %}
 
-  <button type="submit">Register</button>
-</form>
+        <div class="form-group">
+            <label>Username:</label>
+            <input class="input-gray" type="text" name="username" placeholder="yourusername" autocomplete="off" />
+        </div>
 
-{% if error %}
-<p>{{ error }}</p>
-{% endif %}
+        <div class="form-group">
+            <label>Master password:</label>
+            <input class="input-gray" type="password" name="master_password" placeholder="Yourmasterpassword123" autocomplete="off" />
+        </div>
 
-<br />
-<a href="{% url 'login' %}">Already have an account? Login</a>
+        {% if error %}
+            <p class="error-msg">{{ error }}</p>
+        {% endif %}
+
+        <button class="btn btn-red" type="submit" style="margin-top: 24px;">Register</button>
+    </form>
+
+    <a class="auth-link" href="{% url 'login' %}">Already have an account? Login here</a>
+
+</div>
 
 {% endblock %}

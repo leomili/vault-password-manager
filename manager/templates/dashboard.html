@@ -1,24 +1,34 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
 
-<h2>Your Vault</h2>
+<div class="page" style="max-width: 640px;">
 
-<a href="{% url 'add' %}">Add new password</a> |
-<a href="{% url 'lock' %}">Lock Vault</a> |
-<a href="{% url 'logout' %}">Logout</a>
+    <h1 class="page-title">Your vault</h1>
 
-<br /><br />
+    <div class="dashboard-actions">
+        <a class="btn btn-red" href="{% url 'add' %}">Add new password</a>
+        <a class="btn btn-red" href="{% url 'lock' %}">Lock Vault</a>
+        <a class="btn btn-red" href="{% url 'logout' %}">Logout</a>
+    </div>
 
-{% if error %}
-<p>{{ error }}</p>
-{% endif %} {% if entries %}
-<ul>
-  {% for entry in entries %}
-  <li>
-    <a href="{% url 'view' entry.id %}">{{ entry.website }}</a>
-    — {{ entry.username }}
-  </li>
-  {% endfor %}
-</ul>
-{% else %}
-<p>No passwords saved yet. <a href="{% url 'add' %}">Add one now</a></p>
-{% endif %} {% endblock %}
+    {% if error %}
+        <p class="error-msg">{{ error }}</p>
+    {% endif %}
+
+    {% if entries %}
+        <div class="entries-grid">
+            {% for entry in entries %}
+                <a class="entry-card" href="{% url 'view' entry.id %}">
+                    <span class="entry-website">{{ entry.website }}</span>
+                    <span class="entry-username">{{ entry.username }}</span>
+                </a>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="empty-state">No passwords saved yet. <a href="{% url 'add' %}">Add one now</a></p>
+    {% endif %}
+
+</div>
+
+{% endblock %}

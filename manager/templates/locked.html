@@ -1,25 +1,31 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %}
+{% block title %}Vault Locked{% endblock %}
+{% block content %}
 
-<h2>Vault Locked</h2>
-<p>Enter your master password to unlock your vault.</p>
+<div class="page">
 
-<form method="POST">
-  {% csrf_token %}
-  <label>Master Password</label><br />
-  <input
-    type="password"
-    name="master_password"
-    autocomplete="off"
-  /><br /><br />
+    <h1 class="page-title">Vault locked</h1>
 
-  <button type="submit">Unlock</button>
-</form>
+    <p class="locked-subtitle">Enter your master password to unlock your vault.</p>
 
-{% if error %}
-<p>{{ error }}</p>
-{% endif %}
+    <form method="POST">
+        {% csrf_token %}
 
-<br />
-<a href="{% url 'logout' %}">Logout</a>
+        <div class="form-group">
+            <label>Master password:</label>
+            <input class="input-gray" type="password" name="master_password" placeholder="Yourmasterpassword123" autocomplete="off" />
+        </div>
+
+        {% if error %}
+            <p class="error-msg">{{ error }}</p>
+        {% endif %}
+
+        <div class="btn-stack">
+            <button class="btn btn-red" type="submit">Unlock</button>
+            <a class="btn btn-red" href="{% url 'logout' %}">Logout</a>
+        </div>
+    </form>
+
+</div>
 
 {% endblock %}

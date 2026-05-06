@@ -28,4 +28,5 @@ urlpatterns = [
     path("", views.dashboard, name="dashboard"),
     path("add/", views.add_password, name="add"),
     path("view/<int:entry_id>/", views.view_password, name="view"),
+    path("delete/<int:entry_id>/", views.delete_password, name="delete"),
 ]

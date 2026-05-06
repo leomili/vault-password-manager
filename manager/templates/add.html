@@ -1,26 +1,39 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %}
+{% block title %}Add Password{% endblock %}
+{% block content %}
 
-<h2>Add New Password</h2>
+<div class="page">
 
-<form method="POST">
-  {% csrf_token %}
-  <label>Website</label><br />
-  <input type="text" name="website" /><br /><br />
+    <h1 class="page-title">Add new password</h1>
 
-  <label>Username</label><br />
-  <input type="text" name="username" /><br /><br />
+    <form method="POST">
+        {% csrf_token %}
 
-  <label>Password</label><br />
-  <input type="password" name="password" autocomplete="off" /><br /><br />
+        <div class="form-group">
+            <label>Website:</label>
+            <input class="input-gray" type="text" name="website" placeholder="yourwebsitename" autocomplete="off" />
+        </div>
 
-  <button type="submit">Save</button>
-</form>
+        <div class="form-group">
+            <label>Username:</label>
+            <input class="input-gray" type="text" name="username" placeholder="yourusername" autocomplete="off" />
+        </div>
 
-{% if error %}
-<p>{{ error }}</p>
-{% endif %}
+        <div class="form-group">
+            <label>Password:</label>
+            <input class="input-gray" type="password" name="password" placeholder="Yourpassword123" autocomplete="off" />
+        </div>
 
-<br />
-<a href="{% url 'dashboard' %}">Back to dashboard</a>
+        {% if error %}
+            <p class="error-msg">{{ error }}</p>
+        {% endif %}
+
+        <div class="btn-stack">
+            <button class="btn btn-red" type="submit">Save</button>
+            <a class="btn btn-red" href="{% url 'dashboard' %}">Back to dashboard</a>
+        </div>
+    </form>
+
+</div>
 
 {% endblock %}
