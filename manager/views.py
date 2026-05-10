@@ -17,12 +17,12 @@ def register_view(request):
 
         # Validate empty fields
         if not username or not master_password:
-            return render(request, "add.html", {"error": "All fields are required"})
+            return render(request, "register.html", {"error": "All fields are required"})
         # Validate lengths
         if len(username) > 30:
-            return render(request, "add.html", {"error": "Username is too long (max 50 characters)"})
+            return render(request, "register.html", {"error": "Username is too long (max 30 characters)"})
         if len(master_password) > 64:
-            return render(request, "add.html", {"error": "Password is too long (max 64 characters)"})
+            return render(request, "register.html", {"error": "Password is too long (max 64 characters)"})
 
         if User.objects.filter(username=username).exists():
             return render(request, "register.html", {"error": "Username already exists"})
@@ -47,14 +47,12 @@ def login_view(request):
         username = request.POST.get("username")
         master_password = request.POST.get("master_password")
 
-        # Validate empty fields
         if not username or not master_password:
-            return render(request, "add.html", {"error": "All fields are required"})
-        # Validate lengths
+            return render(request, "login.html", {"error": "All fields are required"})
         if len(username) > 30:
-            return render(request, "add.html", {"error": "Username is too long (max 50 characters)"})
+            return render(request, "login.html", {"error": "Username is too long (max 30 characters)"})
         if len(master_password) > 64:
-            return render(request, "add.html", {"error": "Password is too long (max 64 characters)"})       
+            return render(request, "login.html", {"error": "Password is too long (max 64 characters)"})       
 
         user = authenticate(request, username=username, password=master_password)
 
@@ -89,10 +87,10 @@ def locked_view(request):
         
         # Validate empty fields
         if not master_password:
-            return render(request, "add.html", {"error": "All fields are required"})
+            return render(request, "locked.html", {"error": "All fields are required"})
         # Validate lengths
         if len(master_password) > 64:
-            return render(request, "add.html", {"error": "Password is too long (max 64 characters)"})
+            return render(request, "locked.html", {"error": "Password is too long (max 64 characters)"})
         
         user = authenticate(request, username=request.user.username, password=master_password)
 
