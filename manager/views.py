@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from manager.models import PasswordEntry, UserProfile
-from encryption_helper import (
+from encryption.encryption_helper import (
     derive_key, encrypt, decrypt,
     encrypt_for_session, decrypt_from_session
 )
